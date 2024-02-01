@@ -1,3 +1,2 @@
 ### Ethereal Engine Project
-
-This is an Ethereal Engine project.
+`Hello World` project for the introductory Typescript tutorials of Ethereal Engine.
