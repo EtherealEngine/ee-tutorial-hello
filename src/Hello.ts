@@ -1,23 +1,14 @@
 import { ECS } from '@etherealengine/ecs'
-import { PhysicsSystem } from '@etherealengine/spatial/src/physics/PhysicsModule'
+import { NameComponent } from '@etherealengine/spatial/src/common/NameComponent'
+import { VisibleComponent } from '@etherealengine/spatial/src/renderer/components/VisibleComponent'
 import { TransformComponent } from '@etherealengine/spatial/src/transform/components/TransformComponent'
 import { PrimitiveGeometryComponent } from '@etherealengine/engine/src/scene/components/PrimitiveGeometryComponent'
+import { Vector3 } from 'three'
 
-let initialized = false
-const hello = () => {
-  if(initialized) return
-  initialized = true
-
-  const entity = ECS.createSceneEntity('hello-world', null,)
+export default async function worldInjection() {
+  const entity = ECS.createEntity()
+  ECS.setComponent(entity, NameComponent, 'hello-world')
+  ECS.setComponent(entity, VisibleComponent)
+  ECS.setComponent(entity, TransformComponent, { position: new Vector3(0, 1, 0) })
   ECS.setComponent(entity, PrimitiveGeometryComponent, { geometryType: 1 })
-  ECS.getComponent(entity, TransformComponent).position.set(0,1,0)
 }
-
-export const HelloWorldSystem = ECS.defineSystem({
-  uuid: 'hellworld.system',
-  execute: hello,
-  insert: { after: PhysicsSystem }
-})
-
-export default async function worldInjection() {}
-
