@@ -31,7 +31,6 @@ const execute = () => {
     ECS.setComponent(entity, VisibleComponent)
     ECS.setComponent(entity, TransformComponent, { position: new Vector3(0, 1, 0) })
     ECS.setComponent(entity, PrimitiveGeometryComponent, { geometryType: GeometryTypeEnum.SphereGeometry })
-    ECS.setComponent(entity, HelloComponent, { initialized: true })
   }
 }
 
