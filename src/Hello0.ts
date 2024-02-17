@@ -4,10 +4,9 @@ import { VisibleComponent } from '@etherealengine/spatial/src/renderer/component
 import { TransformComponent } from '@etherealengine/spatial/src/transform/components/TransformComponent'
 import { PrimitiveGeometryComponent } from '@etherealengine/engine/src/scene/components/PrimitiveGeometryComponent'
 import { Vector3 } from 'three'
-import { GeometryTypeEnum } from '@etherealengine/engine/src/scene/constants/GeometryTypeEnum'
 
 const entity = ECS.createEntity()
 ECS.setComponent(entity, NameComponent, 'hello-world')
 ECS.setComponent(entity, VisibleComponent)
 ECS.setComponent(entity, TransformComponent, { position: new Vector3(0, 1, 0) })
-ECS.setComponent(entity, PrimitiveGeometryComponent, { geometryType: GeometryTypeEnum.SphereGeometry })
+ECS.setComponent(entity, PrimitiveGeometryComponent, { geometryType: 1 })
