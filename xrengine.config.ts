@@ -31,7 +31,7 @@ const config: ProjectConfigInterface = {
   routes: {},
   services: undefined,
   databaseSeed: undefined,
-  worldInjection: () => import('./src/Hello1')
+  worldInjection: () => import('./src/Hello0')
 }
 
 export default config
