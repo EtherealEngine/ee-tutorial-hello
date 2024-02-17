@@ -25,6 +25,8 @@ const execute = () => {
     const { initialized } = ECS.getComponent(entity, HelloComponent)
     if (initialized) continue
 
+    ECS.getMutableComponent(entity, HelloComponent).initialized.set(true)
+
     ECS.setComponent(entity, NameComponent, 'hello-world')
     ECS.setComponent(entity, VisibleComponent)
     ECS.setComponent(entity, TransformComponent, { position: new Vector3(0, 1, 0) })
