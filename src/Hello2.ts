@@ -10,7 +10,7 @@ import { Vector3 } from 'three'
 // Define our component
 const HelloComponent = ECS.defineComponent({
   name: 'ee.hello-tutorial.HelloComponent',
-  jsonID: 'ee.hello-tutorial.HelloComponent',
+  jsonID: 'EE_tutorial_hello',
 
   onInit() {
     return { initialized: false }
