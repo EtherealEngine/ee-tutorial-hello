@@ -9,35 +9,40 @@ import { Vector3 } from 'three'
 
 // Define our component
 const HelloComponent = ECS.defineComponent({
-  name: 'ee.hello-tutorial.HelloComponent',
+  name: 'ee.tutorial.HelloComponent',
   jsonID: 'EE_tutorial_hello',
 
-  onInit() {
-    return { initialized: false }
-  }
+  onInit() { return { initialized: false } }
 })
 
-// Define our query
-const helloQuery = ECS.defineQuery([HelloComponent])
+// Define the query that will find our Scene's Entity
+const helloQuery = ECS.defineQuery([NameComponent])
 
-const execute = () => {
+const executeHello = () => {
   for (const entity of helloQuery()) {
-    const { initialized } = ECS.getComponent(entity, HelloComponent)
-    if (initialized) continue
+    // Skip entities that don't match our entity name
+    if (ECS.getComponent(entity, NameComponent).value != 'ee.tutorial.hello-entity') continue
 
-    ECS.getMutableComponent(entity, HelloComponent).initialized.set(true)
+    // Check if we have already initialized our code
+    let { initialized } = ECS.getMutableComponent(entity, HelloComponent)
+    if (initialized.value) continue
+    initialized.set(true)
 
-    ECS.setComponent(entity, NameComponent, 'hello-world')
+    // Set the entity Components
+    // 1. Redundant, just for clarity. They are provided by the premade scene we are using.
+    ECS.setComponent(entity, NameComponent, 'ee.tutorial.hello-entity')  // Needs to be the name we are checking at the start of the helloQuery for loop.
     ECS.setComponent(entity, VisibleComponent)
+    // 2. The entity provided has a TransformComponent, but we want to update its position value
     ECS.setComponent(entity, TransformComponent, { position: new Vector3(0, 1, 0) })
+    // 3. Required for our behavior. Sets the geometry type on first call, and updates it on each consecutive call.
     ECS.setComponent(entity, PrimitiveGeometryComponent, { geometryType: GeometryTypeEnum.SphereGeometry })
   }
 }
 
 // Define our system
 const HelloWorldSystem = ECS.defineSystem({
-  uuid: 'helloworld.system',
-  execute,
+  uuid: 'ee.tutorial.HelloWorldSystem',
+  execute: executeHello,
   insert: { after: PhysicsSystem }
 })
 
