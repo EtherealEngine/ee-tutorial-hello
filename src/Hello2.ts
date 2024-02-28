@@ -8,7 +8,7 @@ import { TransformComponent } from '@etherealengine/spatial/src/transform/compon
 import { Vector3 } from 'three'
 
 // Define our component
-const HelloComponent = ECS.defineComponent({
+export const HelloComponent = ECS.defineComponent({
   name: 'ee.tutorial.HelloComponent',
   jsonID: 'EE_tutorial_hello',
 
@@ -40,10 +40,9 @@ const executeHello = () => {
 }
 
 // Define our system
-const HelloWorldSystem = ECS.defineSystem({
+export const HelloWorldSystem = ECS.defineSystem({
   uuid: 'ee.tutorial.HelloWorldSystem',
   execute: executeHello,
   insert: { after: PhysicsSystem }
 })
 
-export { HelloComponent, HelloWorldSystem }
