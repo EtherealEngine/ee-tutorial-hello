@@ -11,7 +11,7 @@ import { GeometryTypeEnum } from '@etherealengine/engine/src/scene/constants/Geo
 let initialized = false    // Track whether our code was already run or not
 
 // Our new function
-const hello = () => {
+function hello() {
   if (initialized) return
   initialized = true
 
